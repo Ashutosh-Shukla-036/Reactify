@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .fade-in {
+      @apply transition-opacity duration-300 ease-in-out;
+    }
+  }
