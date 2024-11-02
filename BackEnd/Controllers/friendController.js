@@ -1,6 +1,5 @@
-import FriendList from "../models/friendList";
-import FriendList from "../models/friendList";
-import User from "../models/user";
+import FriendList from "../models/friendList.js";
+import User from "../models/user.js";
 
 export const addFriend = async (req, res) => {
     const { userId, friendId } = req.body;
