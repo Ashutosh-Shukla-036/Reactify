@@ -58,13 +58,17 @@ export const Login = async (req, res) => {
     }
 };
 
-export const getAllUsers = async (req, res) => {
-    const userId = req.user.userId;
+export const getUser = async (req, res) => {
+    const { searchUser } = req.body;
     try {
-        const users = await User.find({ _id: { $ne: userId } }).select('_id username');
-        return res.status(200).json(users);
+        const user = await User.findOne({ username: searchUser }).select('_id username');
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found'});
+        }
+        return res.status(200).json(user);
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal server error', error });
+        return res.status(500).json({ message: `Internal server error ${error.message}` });
     }
 };
