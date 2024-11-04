@@ -51,7 +51,7 @@ export const Login = async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, { expiresIn: '1h' });
-        return res.status(200).json({ username: user.username, userId: user._id, token });
+        return res.status(200).json({ username: user.username, userId: user._id, balance: user.balance, token });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: `Internal server error: ${error.message}` });
