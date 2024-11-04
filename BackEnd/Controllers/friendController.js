@@ -30,7 +30,6 @@ export const addFriend = async (req, res) => {
             newFriend
          });
     } catch(error) {
-        console.log(error);
         return res.status(500).json({ message: `Internal server error ${error.message}`});
     }
 }
@@ -42,7 +41,6 @@ export const getFriends = async ( req, res ) => {
         const friendList = await FriendList.find({ user:userId }, 'friend');
         return res.status(200).json(friendList);
     } catch(error) {
-        console.log(error);
         return res.status(500).json({ message: `Internal server error ${error.message}`});
     }
 }
@@ -58,7 +56,6 @@ export const searchFriend = async (req, res) => {
 
         return res.status(200).json(friend);
     } catch(error) {
-        console.log(error);
         return res.status(500).json({ message: `Internal server error ${error.message}`});
     }
 }
