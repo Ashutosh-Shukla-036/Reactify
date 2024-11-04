@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import User from "../models/user.js";
+import moment from 'moment-timezone';
 import Transaction from "../models/transaction.js";
 
 export const createTransaction = async (req,res) => {
@@ -82,13 +83,14 @@ export const getTransactionHistory = async (req, res) => {
         }
 
         const formattedTransactions = transactions.map(transaction => {
-            const date = new Date(transaction.timestamp);
+            const dateIndia = moment.tz(transaction.timestamp, "Asia/Kolkata");
             return {
+                transactionId : transaction._id,
                 senderName: transaction.sender.username,
                 receiverName: transaction.receiver.username,
                 amount: transaction.amount,
-                date: date.toISOString().split('T')[0],
-                time: date.toISOString().split('T')[1].split('.')[0]
+                date: dateIndia.format("YYYY-MM-DD"),
+                time: dateIndia.format("HH:mm:ss")
             };
         });
 
