@@ -9,8 +9,8 @@ export const createTransaction = async (req,res) => {
     try {
         const { senderId, receiverId, amount } = req.body;
 
-        const sender = await User.findOne({ senderId }).session(session);
-        const receiver = await User.findOne({ receiverId }).session(session);
+        const sender = await User.findOne({ _id: senderId }).session(session);
+        const receiver = await User.findOne({ _id: receiverId }).session(session);
 
         if (!sender || !receiver) {
             session.abortTransaction();
@@ -36,7 +36,20 @@ export const createTransaction = async (req,res) => {
         await transaction.save({ session });
 
         await session.commitTransaction();
-        return res.status(201).json({ message: 'Transaction successful', transaction });
+
+        const responseData = {
+            transactionId: transaction._id,
+            sender: {
+                id: sender._id,
+                name: sender.username
+            },
+            receiver: {
+                id: receiver._id,
+                name: receiver.username 
+            },
+            amount,
+        };
+        return res.status(201).json({ message: 'Transaction successful', transaction: responseData });
     } catch (error) {
         await session.abortTransaction(); 
         console.error(error);
@@ -45,3 +58,43 @@ export const createTransaction = async (req,res) => {
         session.endSession(); 
     }
 }
+
+export const getTransactionHistory = async (req, res) => {
+    const userId = req.params.userId;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID format.' });
+    }
+
+    try {
+        const transactions = await Transaction.find({
+            $or: [
+                { sender: userId },
+                { receiver: userId }
+            ]
+        })
+        .populate('sender', 'username')
+        .populate('receiver', 'username')
+        .sort({ timestamp: -1 });
+
+        if (transactions.length === 0) {
+            return res.status(200).json({ message: 'No transactions found.' });
+        }
+
+        const formattedTransactions = transactions.map(transaction => {
+            const date = new Date(transaction.timestamp);
+            return {
+                senderName: transaction.sender.username,
+                receiverName: transaction.receiver.username,
+                amount: transaction.amount,
+                date: date.toISOString().split('T')[0],
+                time: date.toISOString().split('T')[1].split('.')[0]
+            };
+        });
+
+        return res.status(200).json(formattedTransactions);
+    } catch (error) {
+        console.error('Error fetching transaction history:', error);
+        return res.status(500).json({ message: `Internal server error: ${error.message}` });
+    }
+};
