@@ -8,7 +8,7 @@ const About = () => {
         <h1 className="text-4xl font-bold mb-6">About Me</h1>
         <h2 className="text-3xl font-semibold mb-4">Hello! I'm Ashutosh Shukla</h2>
         <p className="mb-4 text-gray-700">
-          I am a passionate tech enthusiast and the creator of <strong>PaymentApp</strong>. Currently, I am pursuing my Bachelor’s degree in Computer Science Engineering (CSE) from <strong>CMR Institute of Technology (CMRIT)</strong>. My journey in the tech world is fueled by a desire to create impactful products that simplify people's lives and make digital solutions accessible to everyone.
+          I am a passionate tech enthusiast and the creator of <strong>Reactify</strong>. Currently, I am pursuing my Bachelor’s degree in Computer Science Engineering (CSE) from <strong>CMR Institute of Technology (CMRIT)</strong>. My journey in the tech world is fueled by a desire to create impactful products that simplify people's lives and make digital solutions accessible to everyone.
         </p>
         
         <h3 className="text-2xl font-semibold mb-2">Background</h3>
