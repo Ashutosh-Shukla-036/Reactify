@@ -21,7 +21,7 @@ export const Login = () => {
         setError("");
         try {
             await login(username, password, setUser);
-            navigate('/');
+            navigate('/dashboard');
         } catch (error) {
             setUsername("");
             setPassword("");
