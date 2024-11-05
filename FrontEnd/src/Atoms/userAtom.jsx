@@ -5,18 +5,17 @@ export const userAtom = atom({
   default: null,
   effects: [
     ({ setSelf, onSet }) => {
-      // Load user info from localStorage on initialization
-      const storedUser = localStorage.getItem('user');
+      const storedUser = sessionStorage.getItem('user');
       if (storedUser) {
         setSelf(JSON.parse(storedUser));
       }
 
       onSet(newUser => {
         if (newUser) {
-          localStorage.setItem('user', JSON.stringify(newUser));
+          sessionStorage.setItem('user', JSON.stringify(newUser));
         } else {
-          localStorage.removeItem('user');
-          localStorage.removeItem('token'); 
+          sessionStorage.removeItem('user');
+          sessionStorage.removeItem('token'); 
         }
       });
     }
