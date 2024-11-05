@@ -1,8 +1,15 @@
-# React + Vite
+### Frontend Tech Stack:
+- **React**: Component-based architecture for the user interface.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **React Router**: Client-side routing for navigation.
+- **Headless UI**: Accessible UI components.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Pages:
+- **Welcome**: About Reactify.
+- **Register and Login**: To register and login into the application
+- **Dashboard**: User's dashboard with search and friend list
+- **History**: Transaction history of user
+- **Transaction**: Performs transfer of fund.
+- **About Me**: About the developer
+- **GetInTouch**: To get in touch with developer
