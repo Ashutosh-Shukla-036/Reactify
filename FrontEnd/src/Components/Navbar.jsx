@@ -24,9 +24,9 @@ export const Navbar = () => {
         <nav className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] p-4 flex items-center justify-evenly shadow-lg">
             {/* Logo and App Name */}
             <div className="flex items-center gap-3">
-                <FaReact className="text-black h-auto w-7 animate-spin" />
+                <FaReact className="text-black h-auto w-7 animate-rotate" />
                 <span className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8ec5fc] to-[#e0c3fc]">
-                    <Link to="/">PaymentApp</Link>
+                    <Link to="/">Reactify</Link>
                 </span>
             </div>
 
@@ -35,10 +35,8 @@ export const Navbar = () => {
                 <ul className="flex space-x-4">
                     {user ? (
                         <>
-                            <MenuItemLink to="/profile">Profile</MenuItemLink>
-                            <MenuItemLink to="/balance">Balance</MenuItemLink>
-                            <MenuItemLink to="/transfer">Transfer</MenuItemLink>
-                            <MenuItemLink to="/transactions"> History</MenuItemLink>
+                            <MenuItemLink to="/dashboard">Dashboard</MenuItemLink>
+                            <MenuItemLink to="/history"> History</MenuItemLink>
                             <button 
                                 onClick={handleLogout}
                                 className="px-4 py-2 rounded-md transition-all duration-300 text-center bg-gradient-to-r from-[#8ec5fc] to-[#e0c3fc] hover:bg-gradient-to-r hover:from-[#a1c4fd] hover:to-[#c2e9fb] hover:text-white"
@@ -66,15 +64,12 @@ export const Navbar = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] shadow-lg z-10">
-                    <ul className="flex flex-col space-y-2 p-4">
-                        <MenuItemLink to="/">Home</MenuItemLink>
+                <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] shadow-lg z-10 transition-opacity duration-300 ease-in-out opacity-100">
+                    <ul className="flex flex-col space-y-2 p-4 animate-fade-in">
                         {user ? (
                             <>
-                                <MenuItemLink to="/profile">Profile</MenuItemLink>
-                                <MenuItemLink to="/balance">Balance</MenuItemLink>
-                                <MenuItemLink to="/transfer">Transfer</MenuItemLink>
-                                <MenuItemLink to="/transactions">History</MenuItemLink>
+                                <MenuItemLink to="/dashboard">Dashboard</MenuItemLink>
+                                <MenuItemLink to="/history">History</MenuItemLink>
                                 <button 
                                     onClick={handleLogout}
                                     className="px-4 py-2 rounded-md transition-all duration-300 text-center bg-gradient-to-r from-[#8ec5fc] to-[#e0c3fc] hover:bg-gradient-to-r hover:from-[#a1c4fd] hover:to-[#c2e9fb] hover:text-white"
