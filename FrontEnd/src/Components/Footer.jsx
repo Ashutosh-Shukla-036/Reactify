@@ -10,7 +10,7 @@ export const Footer = () => {
         {/* Logo Section */}
         <div className="flex flex-col items-center mb-6 md:mb-0">
           <span className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8ec5fc] to-[#e0c3fc]">
-            <Link to="/">PaymentApp</Link>
+            <Link to="/">Reactify</Link>
           </span>
 
           {/* Social Media Links */}
@@ -21,7 +21,7 @@ export const Footer = () => {
             <a href="https://www.linkedin.com/in/ashutosh-shukla-1189b625b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <FaLinkedin className="text-2xl text-black hover:text-blue-500 transition" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/ashutosh__shukla07/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <FaInstagram className="text-2xl text-black hover:text-blue-500 transition" />
             </a>
           </div>
@@ -60,7 +60,7 @@ export const Footer = () => {
 
       {/* Copyright */}
       <div className="text-center text-gray-400 space-y-3 mt-6">
-        <p className="text-sm">&copy; {new Date().getFullYear()} PaymentApp. All rights reserved.</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} Reactify. All rights reserved.</p>
       </div>
     </footer>
   );
