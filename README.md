@@ -1,7 +1,7 @@
 
-# Payment Application
+# Reactify
 
-This project is a web-based payment application where users can register, log in, and transfer funds to each other. The application uses Node.js, Express, MongoDB, and Mongoose for backend services, along with JWT for secure authentication. Mongoose sessions ensure transactional integrity for all user transfers.
+Reactify is a full-stack transaction management application that enables users to transfer funds securely and efficiently,featuring a user-friendly interface and real-time transaction validation. The application uses Node.js, Express, MongoDB, and Mongoose for backend services, along with JWT for secure authentication. Mongoose sessions ensure transactional integrity for all user transfers.
 
 ## Table of Contents
 - [Features](#features)
@@ -51,8 +51,8 @@ This project is a web-based payment application where users can register, log in
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Ashutosh-Shukla-036/Payment_Application.git
-   cd Payment_Application
+   git clone https://github.com/Ashutosh-Shukla-036/Reactify.git
+   cd Reactify
    ```
 
 2. **Backend Setup:**
