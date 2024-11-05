@@ -9,6 +9,8 @@ import { SignUp } from './Components/SignUp';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from './Atoms/userAtom';
 import { Profile } from './Components/Profile';
+import { Transfer } from './Components/Transfer';
+import { History } from './Components/History';
 
 
 function App() {
@@ -25,17 +27,13 @@ function App() {
           <Route path="/contact" element={<GetInTouch />} />
           
           {/* Conditional routes for Login and Signup */}
-          <Route 
-            path="/login" 
-            element={user ? <Navigate to="/profile" replace /> : <Login />} 
-          />
-          <Route 
-            path="/signup" 
-            element={user ? <Navigate to="/profile" replace /> : <SignUp />} 
-          />
+          <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
+          <Route path="/signup" element={user ? <Navigate to="/dashboard" replace /> : <SignUp />} />
           
           {/* Profile page for logged-in users */}
-          <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" replace />} />
+          <Route path="/dashboard" element={user ? <Profile /> : <Navigate to="/login" replace />} />
+          <Route path="/transfer/:friendUsername" element={user ? <Transfer /> : <Navigate to="/login" replace />} />
+          <Route path="/history" element={user ? <History /> : <Navigate to="/login" replace />} />
         </Routes>
       </div>
       <Footer />
