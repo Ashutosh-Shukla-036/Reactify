@@ -81,28 +81,28 @@ export const SearchResult = () => {
             {searchQuery ? (
                 <>
                     {isLoading ? (
-                        <p className="text-lg text-blue-500 text-center">Loading...</p>
+                        <p className="text-lg text-blue-500 dark:text-blue-300 text-center">Loading...</p>
                     ) : error ? (
-                        <p className="text-red-500 text-center text-lg">{error}</p>
+                        <p className="text-red-500 dark:text-red-400 text-center text-lg">{error}</p>
                     ) : results.length > 0 && results[0]._id !== user.userId ? (
-                        <ul className="p-4 rounded-lg bg-white shadow-lg max-w-lg mx-auto mt-4">
+                        <ul className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-lg max-w-lg mx-auto mt-4">
                             {results.map((result) => (
                                 <li
                                     key={result._id}
-                                    className="p-2 hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+                                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer flex justify-between items-center"
                                 >
-                                    <span className="text-black">{result.username}</span>
+                                    <span className="text-black dark:text-white">{result.username}</span>
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleAddFriend(result._id);
                                         }}
-                                        className="ml-4 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                        className="ml-4 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
                                     >
                                         Add Friend
                                     </button>
                                     <button
-                                        className="ml-4 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                        className="ml-4 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
                                         onClick={() => {
                                             setSearchQuery('');
                                             handleTransfer(result.username)}
@@ -114,12 +114,12 @@ export const SearchResult = () => {
                             ))}
                         </ul>
                     ) : (
-                        <p className="text-gray-500 text-lg text-center">No results found</p>
+                        <p className="text-gray-500 dark:text-gray-300 text-lg text-center">No results found</p>
                     )}
                 </>
             ) : null}
             {statusMessage && (
-                <p className="text-green-500 text-center mt-2">{statusMessage}</p>
+                <p className="text-green-500 dark:text-green-400 text-center mt-2">{statusMessage}</p>
             )}
         </div>
     );

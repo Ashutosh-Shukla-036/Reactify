@@ -99,15 +99,15 @@ export const Transfer = () => {
     }
 
     return (
-        <div className="bg-gray-200 p-6 m-auto max-w-md rounded shadow-md">
+        <div className="bg-gray-200 dark:bg-gray-800 p-6 m-auto max-w-md rounded shadow-md">
             {loading ? (
                 <p className="text-center text-lg text-blue-500">Processing transaction...</p>
             ) : (
                 <form onSubmit={handleTransfer} className="space-y-4">
-                    <h2 className="text-xl font-semibold text-gray-700 text-center">Transfer Money</h2>
+                    <h2 className="text-xl font-semibold text-gray-700 text-center dark:text-white">Transfer Money</h2>
                     <div className="flex flex-col items-center space-y-2">
-                        <span>From: {sender.username}</span>
-                        {receiver && <span>To: {receiver.username}</span>}
+                        <span className="dark:text-white">From: {sender.username}</span>
+                        {receiver && <span className="dark:text-white">To: {receiver.username}</span>}
                     </div>
                     <input
                         type="number"
