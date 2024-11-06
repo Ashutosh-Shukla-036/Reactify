@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="container dark:bg-gray-700 mx-auto p-4">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />

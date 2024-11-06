@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class', // Enable dark mode with class-based switching
+
   content: [
     "./index.html", 
-    "./src/**/*.{js,jsx,ts,tsx}", 
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  
   theme: {
     extend: {
       animation: {
@@ -49,7 +52,8 @@ export default {
           '100%': { transform: 'rotate(0deg)' },
         },
       },
-    },      
+    },
   },
+
   plugins: [],
-}
+};
