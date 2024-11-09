@@ -17,4 +17,8 @@ app.use('/api',userRoute);
 app.use('/api/transaction',transactionRoute);
 app.use('/api/friend',friendRoute);
 
+app.get('/', (req,res) => {
+    res.status(200).send('Backend is Up...');
+})
+
 app.listen(process.env.PORT);
