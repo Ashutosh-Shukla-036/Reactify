@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaReact } from 'react-icons/fa';
 import { userAtom } from '../Atoms/userAtom';
 import { useRecoilState } from 'recoil';
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -125,9 +126,8 @@ export const Navbar = () => {
       <div className="ml-4">
         <button
           onClick={handleDarkModeToggle}
-          className="px-4 py-2 rounded-md transition-all duration-300 text-center bg-gradient-to-r from-[#8ec5fc] to-[#e0c3fc] hover:bg-gradient-to-r hover:from-[#a1c4fd] hover:to-[#c2e9fb] hover:text-white"
         >
-          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+          {isDarkMode ? <MdDarkMode className="inline-block mr-2 text-white h-auto w-7 hover:text-blue-500" /> : <MdLightMode className="inline-block mr-2 text-black h-auto w-7 hover:text-blue-500"/>}
         </button>
       </div>
     </nav>
