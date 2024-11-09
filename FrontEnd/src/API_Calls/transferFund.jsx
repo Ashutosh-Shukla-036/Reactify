@@ -1,5 +1,5 @@
 export const TransferAPI = async (senderId, receiverId, amount) => {
-    const response = await fetch('http://localhost:3000/api/transaction/transfer', {
+    const response = await fetch('https://reactify-i1sa.onrender.com/api/transaction/transfer', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',

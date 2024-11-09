@@ -1,5 +1,5 @@
 export const GetFriends = async ( userId ) => {
-    const response = await fetch(`http://localhost:3000/api/friend/getfriend/${userId}`, {
+    const response = await fetch(`https://reactify-i1sa.onrender.com/api/friend/getfriend/${userId}`, {
         method: 'GET',
         headers: {
             'Content-type': 'application/json',

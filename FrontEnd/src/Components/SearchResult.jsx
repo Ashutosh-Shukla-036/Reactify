@@ -28,7 +28,6 @@ export const SearchResult = () => {
                 const data = await SearchFriend(query);
                 setResults(data && data.username ? [data] : []);
             } catch (error) {
-                console.error("Error fetching search results:", error);
                 setError(error.message);
             } finally {
                 setIsLoading(false);

@@ -1,5 +1,5 @@
 export const history = async ( userId ) => {
-    const response = await fetch(`http://localhost:3000/api/transaction/history/${userId}` , {
+    const response = await fetch(`https://reactify-i1sa.onrender.com/api/transaction/history/${userId}` , {
         method: 'GET',
         headers: {
             'Content-type': 'application/json',

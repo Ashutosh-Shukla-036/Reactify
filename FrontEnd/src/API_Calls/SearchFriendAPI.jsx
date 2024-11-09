@@ -4,7 +4,7 @@ export const SearchFriend = async (query) => {
         return [];
     }
         
-    const response = await fetch(`http://localhost:3000/api/friend/searchfriend/${query}`,{
+    const response = await fetch(`https://reactify-i1sa.onrender.com/api/friend/searchfriend/${query}`,{
         method: 'GET',
         headers: {
             'Content-type': 'application/json',
