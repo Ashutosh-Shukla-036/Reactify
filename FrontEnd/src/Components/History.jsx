@@ -102,47 +102,46 @@ export const History = () => {
             ) : (
                 <p className="text-gray-500 dark:text-gray-400 text-center text-lg">No transactions found.</p>
             )}
-
             {historyList.length > PageSize && (
-                <div className="flex justify-center mt-6 space-x-4">
+                <div className="flex justify-center items-center mt-6 space-x-2">
                     <button 
                         onClick={() => goToPage(1)}
-                        disabled = { page === 1}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                        disabled={page === 1}
+                        className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
                     >
                         First
                     </button>
 
                     <button 
-                        onClick={() => goToPage(page -1)}
-                        disabled = { page === 1}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                        onClick={() => goToPage(page - 1)}
+                        disabled={page === 1}
+                        className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
                     >
                         Previous
                     </button>
 
-                    <span className="text-gray-800 dark:text-white font-medium mt-2">
+                    <span className="text-xs text-gray-800 dark:text-white font-medium">
                         Page {page} of {TotalPage}
                     </span>
 
                     <button 
                         onClick={() => goToPage(page + 1)}
-                        disabled = { page === TotalPage}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                        disabled={page === TotalPage}
+                        className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
                     >
                         Next
                     </button>
 
                     <button
                         onClick={() => goToPage(TotalPage)}
-                        disabled = { page === TotalPage}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                        disabled={page === TotalPage}
+                        className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
                     >
                         Last
                     </button>
-
                 </div>
             )}
+
         </div>
     );
 };

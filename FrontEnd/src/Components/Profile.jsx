@@ -19,9 +19,9 @@ export const Profile = () => {
 
             <div className="flex flex-col p-8 rounded-xl bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500 shadow-xl w-full max-w-md mx-auto text-white mb-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl font-sans">
                 {/* Username and Account Section */}
-                <div className="flex justify-between items-center w-full mb-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center w-full mb-6">
                     {/* Username Section */}
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col space-y-2 w-full sm:w-auto">
                         <div className="flex items-center space-x-2">
                             <FaUserAlt className="text-gray-200" />
                             <h2 className="uppercase tracking-wider text-gray-100">Username</h2>
@@ -30,12 +30,12 @@ export const Profile = () => {
                     </div>
 
                     {/* Account Number Section */}
-                    <div className="flex flex-col items-end space-y-2">
+                    <div className="flex flex-col items-start sm:items-end space-y-2 w-full sm:w-auto">
                         <div className="flex items-center space-x-2">
                             <FaIdBadge className="text-gray-200" />
                             <p className="uppercase tracking-wider text-gray-100">Account #</p>
                         </div>
-                        <p className="text-xl font-semibold text-gray-50">{user.userId}</p>
+                        <p className="text-xl font-semibold text-gray-50 break-words">{user.userId}</p>
                     </div>
                 </div>
 
