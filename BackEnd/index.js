@@ -17,4 +17,4 @@ app.use('/api',userRoute);
 app.use('/api/transaction',transactionRoute);
 app.use('/api/friend',friendRoute);
 
-app.listen(process.env.PORT || 300);
+app.listen(process.env.PORT);
