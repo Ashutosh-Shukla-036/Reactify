@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userAtom } from "../Atoms/userAtom";
 import { useEffect, useState } from "react";
 import { history } from "../API_Calls/HistoryAPI";
-import { historyAtom } from "../Atoms/HistoryAtom";
+import { historyAtom } from "../Atoms/historyAtom";
 
 export const History = () => {
     const user = useRecoilValue(userAtom);
