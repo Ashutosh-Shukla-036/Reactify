@@ -9,6 +9,20 @@ export const History = () => {
     const [historyList, setHistoryList] = useRecoilState(historyAtom);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setError] = useState('');
+    const [page, setPage] = useState(1);
+    const PageSize = 5;
+
+    const TotalPage = Math.ceil(historyList.length/PageSize);
+    const indexOfLastItem = page * PageSize;
+    const indexOfFirstItem = indexOfLastItem - PageSize;
+
+    const currentItems = historyList.slice(indexOfFirstItem, indexOfLastItem);
+
+    const goToPage = (pageNumber) => {
+        if (pageNumber >= 1 && pageNumber <= TotalPage) {
+            setPage(pageNumber);
+        }
+    }
 
     useEffect(() => {
         const fetchHistory = async () => {
@@ -37,7 +51,7 @@ export const History = () => {
                 <p className="text-red-500 dark:text-red-400 text-center text-lg font-medium">{errorMessage}</p>
             ) : historyList.length > 0 ? (
                 <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {historyList.map((transaction, index) => (
+                    {currentItems.map((transaction, index) => (
                         <li
                             key={index}
                             className="p-6 bg-white dark:bg-gray-800 flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-lg mb-4 shadow-sm hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1"
@@ -87,6 +101,47 @@ export const History = () => {
                 </ul>
             ) : (
                 <p className="text-gray-500 dark:text-gray-400 text-center text-lg">No transactions found.</p>
+            )}
+
+            {historyList.length > PageSize && (
+                <div className="flex justify-center mt-6 space-x-4">
+                    <button 
+                        onClick={() => goToPage(1)}
+                        disabled = { page === 1}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                    >
+                        First
+                    </button>
+
+                    <button 
+                        onClick={() => goToPage(page -1)}
+                        disabled = { page === 1}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                    >
+                        Previous
+                    </button>
+
+                    <span className="text-gray-800 dark:text-white font-medium mt-2">
+                        Page {page} of {TotalPage}
+                    </span>
+
+                    <button 
+                        onClick={() => goToPage(page + 1)}
+                        disabled = { page === TotalPage}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                    >
+                        Next
+                    </button>
+
+                    <button
+                        onClick={() => goToPage(TotalPage)}
+                        disabled = { page === TotalPage}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+                    >
+                        Last
+                    </button>
+
+                </div>
             )}
         </div>
     );
