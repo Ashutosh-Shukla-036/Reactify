@@ -67,22 +67,24 @@ export const Transfer = () => {
     // Handle successful transaction display
     if (status === "success" && transactionData) {
         return (
-            <div className="bg-green-100 p-6 m-auto rounded-lg shadow-md max-w-md text-center">
-                <h2 className="text-3xl font-bold text-green-800 mb-4">Transaction Successful!</h2>
-                <p className="text-lg text-green-600 mb-2">
+            <div className="bg-green-100 p-4 sm:p-6 mx-auto rounded-lg shadow-md max-w-sm sm:max-w-md text-center">
+                <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-3 sm:mb-4">Transaction Successful!</h2>
+                <p className="text-base sm:text-lg text-green-600 mb-2">
                     Transaction ID: <strong>{transactionData.transactionId}</strong>
                 </p>
-                <div className="flex justify-between mb-2">
+                
+                <div className="flex flex-col sm:flex-row sm:justify-between items-center sm:items-start mb-2 space-y-2 sm:space-y-0">
                     <p className="text-sm text-gray-600">
                         Sender: <strong>{transactionData.sender.name}</strong> (ID: {transactionData.sender.id})
                     </p>
-                    <i className="fas fa-arrow-right text-green-600"></i>
+                    <i className="fas fa-arrow-right text-green-600 hidden sm:inline-block"></i>
                     <p className="text-sm text-gray-600">
                         Receiver: <strong>{transactionData.receiver.name}</strong> (ID: {transactionData.receiver.id})
                     </p>
                 </div>
-                <p className="text-lg font-semibold text-green-700 mb-2">
-                    Amount: <span className="text-2xl">₹{transactionData.amount.toFixed(2)}</span>
+
+                <p className="text-lg sm:text-xl font-semibold text-green-700 mb-2">
+                    Amount: <span className="text-xl sm:text-2xl">₹{transactionData.amount.toFixed(2)}</span>
                 </p>
             </div>
         );
