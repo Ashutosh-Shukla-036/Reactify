@@ -12,11 +12,14 @@ export const History = () => {
     const [page, setPage] = useState(1);
     const PageSize = 5;
 
-    const TotalPage = Math.ceil(historyList.length/PageSize);
+    // Guard against undefined or null historyList
+    const safeHistoryList = Array.isArray(historyList) ? historyList : [];
+
+    const TotalPage = Math.ceil(safeHistoryList.length / PageSize);
     const indexOfLastItem = page * PageSize;
     const indexOfFirstItem = indexOfLastItem - PageSize;
 
-    const currentItems = historyList.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = safeHistoryList.slice(indexOfFirstItem, indexOfLastItem);
 
     const goToPage = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= TotalPage) {
@@ -31,9 +34,12 @@ export const History = () => {
             try {
                 console.log(user.userId);
                 const historyData = await history(user.userId);
-                setHistoryList(historyData);
+
+                // Ensure the response is an array, otherwise set to an empty array
+                setHistoryList(Array.isArray(historyData) ? historyData : []);
             } catch (error) {
                 setError(error.message);
+                setHistoryList([]);  // fallback to an empty array on error
             } finally {
                 setIsLoading(false);
             }
@@ -49,7 +55,7 @@ export const History = () => {
                 <p className="text-gray-600 dark:text-gray-300 text-center text-lg font-medium">Loading transactions...</p>
             ) : errorMessage ? (
                 <p className="text-red-500 dark:text-red-400 text-center text-lg font-medium">{errorMessage}</p>
-            ) : historyList.length > 0 ? (
+            ) : safeHistoryList.length > 0 ? (
                 <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                     {currentItems.map((transaction, index) => (
                         <li
@@ -102,7 +108,7 @@ export const History = () => {
             ) : (
                 <p className="text-gray-500 dark:text-gray-400 text-center text-lg">No transactions found.</p>
             )}
-            {historyList.length > PageSize && (
+            {safeHistoryList.length > PageSize && (
                 <div className="flex justify-center items-center mt-6 space-x-2">
                     <button 
                         onClick={() => goToPage(1)}
@@ -141,7 +147,6 @@ export const History = () => {
                     </button>
                 </div>
             )}
-
         </div>
     );
 };
