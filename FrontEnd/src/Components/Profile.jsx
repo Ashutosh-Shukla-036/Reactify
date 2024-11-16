@@ -1,13 +1,39 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { searchQueryAtom } from "../Atoms/searchQueryAtom";
 import { SearchResult } from "./SearchResult";
 import { userAtom } from "../Atoms/userAtom";
 import { FaUserAlt, FaIdBadge, FaWallet } from "react-icons/fa";
 import { FriendList } from "./FriendList";
+import { useEffect, useState } from "react";
+import { historyAtom } from "../Atoms/historyAtom";
+import { UpdateUser } from "../API_Calls/UpdateUser"
 
 export const Profile = () => {
     const setSearchQueryAtom = useSetRecoilState(searchQueryAtom);
-    const user = useRecoilValue(userAtom);
+    const [user, setUser] = useRecoilState(userAtom);
+    const [history, setHistory] = useRecoilState(historyAtom);
+    const [userData, setUserData] = useState([]);
+
+    console.log(user);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (user && user.userId) { 
+                try {
+                    const data = await UpdateUser(user.userId);
+                    setUserData(data);
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            } else {
+                console.error("User ID is undefined");
+            }
+        };
+    
+        fetchData();
+    }, [user, setHistory, setUser]);
+
+    console.log(userData);
 
     const handleSearch = (event) => {
         setSearchQueryAtom(event.target.value);
@@ -26,7 +52,7 @@ export const Profile = () => {
                             <FaUserAlt className="text-gray-200" />
                             <h2 className="uppercase tracking-wider text-gray-100">Username</h2>
                         </div>
-                        <p className="text-xl font-semibold text-gray-50">{user.username}</p>
+                        <p className="text-xl font-semibold text-gray-50">{userData.username}</p>
                     </div>
 
                     {/* Account Number Section */}
@@ -35,7 +61,7 @@ export const Profile = () => {
                             <FaIdBadge className="text-gray-200" />
                             <p className="uppercase tracking-wider text-gray-100">Account #</p>
                         </div>
-                        <p className="text-xl font-semibold text-gray-50 break-words">{user.userId}</p>
+                        <p className="text-xl font-semibold text-gray-50 break-words">{userData._id}</p>
                     </div>
                 </div>
 
@@ -45,7 +71,7 @@ export const Profile = () => {
                         <FaWallet className="text-gray-200" />
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-100">Balance</h3>
                     </div>
-                    <p className="text-3xl font-bold text-gray-50 mt-2">₹{user.balance.toFixed(2)}</p>
+                    <p className="text-3xl font-bold text-gray-50 mt-2">₹{userData.balance?.toFixed(2)}</p>
                 </div>
             </div>
 

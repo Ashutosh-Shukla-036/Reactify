@@ -54,6 +54,7 @@ export const Transfer = () => {
             setTransactionData(response.transaction);
             setStatus("success");
             setSender(prev => ({ ...prev, balance: prev.balance - parsedAmount }));
+            setReceiver(prev => ({ ...prev, balance: prev.balance + parsedAmount }));
         } catch (error) {
             console.error("Transfer error:", error);
             setError(error.message);
