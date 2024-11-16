@@ -49,7 +49,7 @@ export const searchFriend = async (req, res) => {
     const friendUsername = req.params.username;
 
     try {
-        const friend = await User.findOne({ username: { $regex: new RegExp(`^${friendUsername}$`, 'i') } }).select('_id username');
+        const friend = await User.findOne({ username: { $regex: new RegExp(`^${friendUsername}$`, 'i') } }).select('_id username balance');
         if (!friend) {
             return res.status(404).json({ message: 'User not found' });
         }
