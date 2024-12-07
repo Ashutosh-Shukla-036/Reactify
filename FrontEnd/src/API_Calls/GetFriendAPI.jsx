@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GetFriends = async (userId) => {
     try {
-        const response = await axios.get(`https://reactify-i1sa.onrender.com/api/friend/getfriend/${userId}`, {
+        const response = await axios.get(`https://reactify-88q1.onrender.com/api/friend/getfriend/${userId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const login = async (username, password, setUser) => {
     try {
-        const response = await axios.post('https://reactify-i1sa.onrender.com/api/login', {
+        const response = await axios.post('https://reactify-88q1.onrender.com/api/login', {
             username,
             password,
         }, {

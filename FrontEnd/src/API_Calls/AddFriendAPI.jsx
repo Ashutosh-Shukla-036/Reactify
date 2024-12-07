@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const AddFriend = async (userId, friendId) => {
     try {
-        const response = await axios.post('https://reactify-i1sa.onrender.com/api/friend/addfriend', 
+        const response = await axios.post('https://reactify-88q1.onrender.com/api/friend/addfriend', 
             { userId, friendId }, // Request body
             {
                 headers: {

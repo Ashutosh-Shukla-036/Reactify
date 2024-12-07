@@ -6,7 +6,7 @@ export const SearchFriend = async (query) => {
     }
 
     try {
-        const response = await axios.get(`https://reactify-i1sa.onrender.com/api/friend/searchfriend/${query}`, {
+        const response = await axios.get(`https://reactify-88q1.onrender.com/api/friend/searchfriend/${query}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,

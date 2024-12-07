@@ -3,7 +3,7 @@ import axios from "axios";
 export const TransferAPI = async (senderId, receiverId, amount) => {
     try {
         const response = await axios.post(
-            'https://reactify-i1sa.onrender.com/api/transaction/transfer',
+            'https://reactify-88q1.onrender.com/api/transaction/transfer',
             { senderId, receiverId, amount },
             {
                 headers: {
