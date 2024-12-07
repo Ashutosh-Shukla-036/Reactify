@@ -1,5 +1,5 @@
 export const UpdateUser = async (userId) => {
-    const response = await fetch(`http://localhost:8081/api/userupdate/${userId}`, {
+    const response = await fetch(`https://reactify-i1sa.onrender.com/api/userupdate/${userId}`, {
         method: 'GET',
         headers: {
             'Content-type': 'application/json',
