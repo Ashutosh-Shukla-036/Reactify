@@ -1,29 +1,35 @@
+import axios from "axios";
+
 export const login = async (username, password, setUser) => {
+    try {
+        const response = await axios.post('https://reactify-i1sa.onrender.com/api/login', {
+            username,
+            password,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    const response = await fetch('https://reactify-i1sa.onrender.com/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({ username, password })
-    });
+        const data = response.data;
 
-    const data = await response.json();
+        // Store the token and user info in sessionStorage
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('user', JSON.stringify({
+            username: data.username,
+            userId: data.userId,
+            balance: data.balance,
+        }));
 
-    if (!response.ok) {
-        const errorMessage = data.message || 'An error occurred during login.';
+        // Update the user state
+        setUser({
+            username: data.username,
+            userId: data.userId,
+            balance: data.balance,
+        });
+
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || 'An error occurred during login.';
         throw new Error(errorMessage);
     }
-
-    sessionStorage.setItem('token', data.token);
-    sessionStorage.setItem('user', JSON.stringify({ 
-        username: data.username,  
-        userId: data.userId,
-        balnace: data.balance
-    }));
-    setUser({ 
-        username: data.username,  
-        userId: data.userId, 
-        balance: data.balance
-    }); 
 };

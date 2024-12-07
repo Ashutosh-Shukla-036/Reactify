@@ -1,17 +1,19 @@
-export const GetFriends = async ( userId ) => {
-    const response = await fetch(`https://reactify-i1sa.onrender.com/api/friend/getfriend/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-    });
+import axios from "axios";
 
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+export const GetFriends = async (userId) => {
+    try {
+        const response = await axios.get(`https://reactify-i1sa.onrender.com/api/friend/getfriend/${userId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+
+        // Axios automatically parses JSON responses
+        return response.data;
+    } catch (error) {
+        // Axios wraps errors; use error.response to access server error details
+        const errorMessage = error.response?.data?.message || 'Failed to fetch friends';
+        throw new Error(errorMessage);
     }
-
-    const data = await response.json();
-    return data;
-}
+};

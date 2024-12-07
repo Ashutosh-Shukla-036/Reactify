@@ -1,22 +1,23 @@
-export const SearchFriend = async (query) => {
+import axios from "axios";
 
+export const SearchFriend = async (query) => {
     if (!query) {
         return [];
     }
-        
-    const response = await fetch(`https://reactify-i1sa.onrender.com/api/friend/searchfriend/${query}`,{
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-    });
-        
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+
+    try {
+        const response = await axios.get(`https://reactify-i1sa.onrender.com/api/friend/searchfriend/${query}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+
+        // Axios automatically parses the JSON response
+        return response.data;
+    } catch (error) {
+        // Handle errors
+        const errorMessage = error.response?.data?.message || 'Failed to search for friends.';
+        throw new Error(errorMessage);
     }
-        
-    const data = await response.json();
-    return data;
-}
+};

@@ -1,17 +1,16 @@
+import axios from "axios";
+
 export const UpdateUser = async (userId) => {
-    const response = await fetch(`https://reactify-i1sa.onrender.com/api/userupdate/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-        },
-    });
-
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to fetch user data');
+    try {
+        const response = await axios.get(`https://reactify-i1sa.onrender.com/api/userupdate/${userId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || 'Failed to fetch user data';
+        throw new Error(errorMessage);
     }
-
-    const data = await response.json();
-    return data;
 };

@@ -1,19 +1,20 @@
-export const AddFriend = async ( userId, friendId ) => {
-    const response = await fetch('https://reactify-i1sa.onrender.com/api/friend/addfriend' , {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({ userId, friendId })
-    });
+import axios from "axios";
 
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+export const AddFriend = async (userId, friendId) => {
+    try {
+        const response = await axios.post('https://reactify-i1sa.onrender.com/api/friend/addfriend', 
+            { userId, friendId }, // Request body
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        // Handle error
+        const errorMessage = error.response?.data?.message || 'Failed to add friend';
+        throw new Error(errorMessage);
     }
-
-    const data = await response.json();
-    console.log(data);
-    return data;
-}
+};

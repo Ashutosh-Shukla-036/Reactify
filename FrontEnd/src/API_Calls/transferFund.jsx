@@ -1,18 +1,23 @@
+import axios from "axios";
+
 export const TransferAPI = async (senderId, receiverId, amount) => {
-    const response = await fetch('https://reactify-i1sa.onrender.com/api/transaction/transfer', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({ senderId, receiverId, amount })
-    });
+    try {
+        const response = await axios.post(
+            'https://reactify-i1sa.onrender.com/api/transaction/transfer',
+            { senderId, receiverId, amount },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                },
+            }
+        );
 
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to complete the transfer');
+        // Axios automatically parses JSON responses, so we return the data directly
+        return response.data;
+    } catch (error) {
+        // Extract and format error message
+        const errorMessage = error.response?.data?.message || 'Failed to complete the transfer';
+        throw new Error(errorMessage);
     }
-
-    const data = await response.json();
-    return data;
-}
+};
